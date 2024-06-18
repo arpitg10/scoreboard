@@ -37,4 +37,16 @@ public class Game {
     public void setUpdatedTime(LocalDateTime updatedTime) {
         this.updatedTime = updatedTime;
     }
+
+    @Override
+    public String toString() {
+        return "gameId(" + gameId +
+                ") " + homeTeam.getTeamName() +
+                " - " + awayTeam.getTeamName() +
+                ": " + homeTeam.getScore() +
+                " - " + awayTeam.getScore() +
+                " startedTime(" + startedTime.toString() +
+                ") updatedTime(" + updatedTime.toString() +
+                ')';
+    }
 }
