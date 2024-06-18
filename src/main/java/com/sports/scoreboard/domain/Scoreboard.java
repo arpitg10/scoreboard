@@ -21,4 +21,11 @@ public class Scoreboard {
         gameList.add(new Game(gameId, homeTeamName, awayTeamName));
         return gameId;
     }
+
+    public void updateGame(int gameId, int homeTeamScore, int awayTeamScore) {
+        Game selectedGame = gameList.stream().filter(game -> game.getGameId() == gameId).findFirst().orElseThrow();
+        selectedGame.getHomeTeam().setScore(homeTeamScore);
+        selectedGame.getAwayTeam().setScore(awayTeamScore);
+        selectedGame.setUpdatedTime(LocalDateTime.now());
+    }
 }
