@@ -28,4 +28,8 @@ public class Scoreboard {
         selectedGame.getAwayTeam().setScore(awayTeamScore);
         selectedGame.setUpdatedTime(LocalDateTime.now());
     }
+
+    public boolean finishGame(int gameId) {
+        return gameList.removeIf(game -> game.getGameId() == gameId);
+    }
 }
