@@ -21,6 +21,16 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 }
 
+application {
+    mainClass.set("com.sports.scoreboard.ScoreboardApp")
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "com.sports.scoreboard.ScoreboardApp"
+    }
+}
+
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
