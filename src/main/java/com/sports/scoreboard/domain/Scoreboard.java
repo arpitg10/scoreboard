@@ -15,4 +15,10 @@ public class Scoreboard {
     public List<Game> getGameList() {
         return gameList;
     }
+
+    public int startGame(String homeTeamName, String awayTeamName) {
+        int gameId = gameIdCounter++;
+        gameList.add(new Game(gameId, homeTeamName, awayTeamName));
+        return gameId;
+    }
 }
