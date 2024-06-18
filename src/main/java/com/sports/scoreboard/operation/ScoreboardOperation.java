@@ -25,6 +25,11 @@ public class ScoreboardOperation {
     }
 
     public static void finishGame(Scoreboard scoreboard, int gameId) {
+        if (scoreboard.finishGame(gameId)) {
+            System.out.println("Game finished successfully!!");
+        } else {
+            System.out.println("No game is present with provided game Id.");
+        }
     }
 
     public static List<Game> getSortedGameList(Scoreboard scoreboard) {
