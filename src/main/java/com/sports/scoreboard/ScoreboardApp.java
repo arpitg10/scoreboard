@@ -62,7 +62,9 @@ public class ScoreboardApp {
                             if (gameList.isEmpty()) {
                                 System.out.println("No active games found.");
                             } else {
+                                System.out.println("**********************Scoreboard**********************");
                                 gameList.forEach(System.out::println);
+                                System.out.println("******************************************************");
                             }
                         }
                     }
