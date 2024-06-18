@@ -29,4 +29,22 @@ class ScoreboardOperationTest {
         assertEquals(2, scoreboard.getGameList().size());
         assertEquals(gameId2, scoreboard.getGameList().get(1).getGameId());
     }
+
+    @Test
+    void shouldAssignUniqueGameIdUsingCounter() {
+        int gameId1 = startGame(scoreboard, "HomeTeam1", "AwayTeam1");
+        assertEquals(1, scoreboard.getGameList().size());
+        assertEquals("HomeTeam1", scoreboard.getGameList().get(0).getHomeTeam().getTeamName());
+
+        int gameId2 = startGame(scoreboard, "HomeTeam2", "AwayTeam2");
+        assertEquals(2, scoreboard.getGameList().size());
+        assertEquals("HomeTeam2", scoreboard.getGameList().get(1).getHomeTeam().getTeamName());
+
+        finishGame(scoreboard, gameId2);
+
+        int gameId3 = startGame(scoreboard, "HomeTeam3", "AwayTeam3");
+        assertEquals(2, scoreboard.getGameList().size());
+        assertEquals(gameId1, scoreboard.getGameList().get(0).getGameId());
+        assertEquals(gameId3, scoreboard.getGameList().get(1).getGameId());
+    }
 }
