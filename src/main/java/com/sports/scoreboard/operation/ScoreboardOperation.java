@@ -3,7 +3,6 @@ package com.sports.scoreboard.operation;
 import com.sports.scoreboard.domain.Game;
 import com.sports.scoreboard.domain.Scoreboard;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -33,6 +32,20 @@ public class ScoreboardOperation {
     }
 
     public static List<Game> getSortedGameList(Scoreboard scoreboard) {
-        return Collections.emptyList();
+        List<Game> gameList = scoreboard.getGameList();
+        gameList.sort((a, b) -> {
+            int gameOneAccumulated = a.getHomeTeam().getScore() + a.getAwayTeam().getScore();
+            int gameTwoAccumulated = b.getHomeTeam().getScore() + b.getAwayTeam().getScore();
+            if (gameOneAccumulated > gameTwoAccumulated) {
+                return -1;
+            } else if (gameTwoAccumulated > gameOneAccumulated) {
+                return 1;
+            } else if (a.getUpdatedTime().isAfter(b.getUpdatedTime())) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+        return gameList;
     }
 }
