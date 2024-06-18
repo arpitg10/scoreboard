@@ -73,4 +73,19 @@ class ScoreboardOperationTest {
         assertEquals("HomeTeam2", scoreboard.getGameList().get(0).getHomeTeam().getTeamName());
         assertEquals(gameId2, scoreboard.getGameList().get(0).getGameId());
     }
+
+    @Test
+    void getSortedScoreboardSuccessfully() {
+        int gameId1 = startGame(scoreboard, "HomeTeam1", "AwayTeam1");
+        int gameId2 = startGame(scoreboard, "HomeTeam2", "AwayTeam2");
+        int gameId3 = startGame(scoreboard, "HomeTeam3", "AwayTeam3");
+
+        updateGame(scoreboard, gameId1, 3, 3);
+        updateGame(scoreboard, gameId2, 1, 0);
+        updateGame(scoreboard, gameId3, 1, 5);
+
+        List<Game> scoreboardDisplay = getSortedGameList(scoreboard);
+
+        assertEquals(List.of(gameId3, gameId1, gameId2), scoreboardDisplay.stream().map(Game::getGameId).toList());
+    }
 }
