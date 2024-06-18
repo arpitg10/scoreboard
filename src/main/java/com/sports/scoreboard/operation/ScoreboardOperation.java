@@ -5,6 +5,7 @@ import com.sports.scoreboard.domain.Scoreboard;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ScoreboardOperation {
 
@@ -15,6 +16,12 @@ public class ScoreboardOperation {
     }
 
     public static void updateGame(Scoreboard scoreboard, int gameId, int homeTeamScore, int awayTeamScore) {
+        try {
+            scoreboard.updateGame(gameId, homeTeamScore, awayTeamScore);
+            System.out.println("Game score updated successfully");
+        } catch (NoSuchElementException e) {
+            System.out.println("No game found with provided game ID");
+        }
     }
 
     public static void finishGame(Scoreboard scoreboard, int gameId) {
