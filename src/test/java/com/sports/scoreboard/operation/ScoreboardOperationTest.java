@@ -47,4 +47,16 @@ class ScoreboardOperationTest {
         assertEquals(gameId1, scoreboard.getGameList().get(0).getGameId());
         assertEquals(gameId3, scoreboard.getGameList().get(1).getGameId());
     }
+
+    @Test
+    void updateGameSuccessfully() {
+        int gameId1 = startGame(scoreboard, "HomeTeam1", "AwayTeam1");
+
+        int gameId2 = startGame(scoreboard, "HomeTeam2", "AwayTeam2");
+
+        updateGame(scoreboard, gameId2, 3, 1);
+        assertEquals(0, scoreboard.getGameList().get(0).getHomeTeam().getScore());
+        assertEquals(3, scoreboard.getGameList().get(1).getHomeTeam().getScore());
+        assertEquals(1, scoreboard.getGameList().get(1).getAwayTeam().getScore());
+    }
 }
